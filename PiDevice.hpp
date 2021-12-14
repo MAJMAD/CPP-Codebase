@@ -3,12 +3,12 @@
 //Linux/ARM devices especially will require access to this source code as the uncompiled source code is unavailable at this time
 #pragma once
 #include<stdio.h>
-#include<string.h>	//strlen
+#include<string.h>	
 #include<sys/socket.h>
-#include<arpa/inet.h>	//inet_addr
-#include<netdb.h> // hostent
-#include<unistd.h> // close()
-#include<iostream> //cin
+#include<arpa/inet.h>	
+#include<netdb.h> 
+#include<unistd.h>
+#include<iostream>
 #include<string>
 #include<cstring>
 #include<sstream>
@@ -18,20 +18,18 @@
 
 using namespace std;
 
-namespace pi
-{
-
-	class PiDevice{
+class PIDevice{
 		
 		public:
 		//Class Attributes
 			//Device Attributes
-			vector<vector<char>> Attributes;
-			vector<vector<char>> Methods;
-			vector<char> DeviceFamily;
-			vector<char> ConnectionStatus;
-			vector<char> ConnectionType;
-			vector<char> Axes;
+			//vector<vector<char>> Attributes;
+			//vector<vector<char>> Methods;
+			//vector<char> DeviceFamily;
+			string ConnectionStatus;
+			string ConnectionType;
+			string LastCommand;
+			/*vector<char> Axes;
 			vector<char> CurrentPosition;
 			vector<char> MaxPosition;
 			vector<char> MinPosition;
@@ -51,20 +49,21 @@ namespace pi
 			vector<char> Mass;
 			vector<char> Load;
 			vector<char> LengthUnit;
-			vector<char> MinimumIncrementalMotion;
+			vector<char> MinimumIncrementalMotion;*/
 			
 			//Connectivity Attrbutes
 			int socket_desc;
 			struct sockaddr_in server;
-			char *message , server_reply[2000];
+			char *message , server_reply[10000];
 			
 		//Class Methods
 		
 			//User Methods
-			void connectPI();
-			void sendPI();
-			void receivePI();
+			int connectPI();
+			int sendPI(string GCSCommand);
+			int sendrPI(string GCSCommand);
 			
+			/*
 			//Connection Methods
 			//void connectTCPIP();
 			//void connectRS232();
@@ -96,7 +95,6 @@ namespace pi
 			//Support Methods
 			void HLP();
 			void HPA();
-			void MAN();
+			void MAN();*/
 		
 };
-}
